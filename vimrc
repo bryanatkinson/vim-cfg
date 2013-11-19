@@ -139,6 +139,12 @@ au BufRead,BufNewFile *.scala set filetype=scala
 autocmd FileType scala match OverLength /\%120v.\+/
 " Scala stuff }}}
 
+" Arduino stuff {{{
+au BufRead,BufNewFile *.pde set filetype=arduino
+au BufRead,BufNewFile *.ino set filetype=arduino
+autocmd FileType arduino match OverLength /\%80v.\+/
+" }}}
+
 " Variables {{{
 
 " Sets whether or not XPT adds spaces around parameters
