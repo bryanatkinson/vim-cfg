@@ -16,6 +16,9 @@ git clone https://github.com/vim-scripts/L9.git ~/.vim/bundle/l9
 git clone https://github.com/vim-scripts/xptemplate.git ~/.vim/bundle/xptemplate
 git clone https://github.com/derekwyatt/vim-scala.git ~/.vim/bundle/vim-scala
 git clone https://github.com/vim-scripts/AutoTag.git ~/.vim/bundle/autotag
+git clone https://github.com/vlaadbrain/gnuplot.vim.git ~/.vim/bundle/vim-gnuplot
+git clone https://github.com/jcf/vim-latex ~/.vim/bundle/vim-latex
+git clone https://github.com/tclem/vim-arduino.git ~/.vim/bundle/vim-arduino
 
 # add symlink to vimrc
 ln -s ~/.vim/vimrc ~/.vimrc
