@@ -130,7 +130,8 @@ autocmd FileType java set errorformat=[ERROR]\ %f:[%l\\,%v]\ %m
 let java_highlight_all=1
 
 " I like an 80 character max 
-autocmd FileType java match OverLength /\%81v.\+/
+autocmd FileType java match OverLength /\%91v.\+/
+syn match javaError "<<<\|\.\.\|=>\|||=\|&&=\|[^-]->\|\*\/"
 
 " Java specific }}}
 
@@ -161,7 +162,7 @@ let g:EasyMotion_leader_key = '<Leader>'
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem = 400
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po]|\\)$|(^|[/\\])(\.hg|\.git|\.bzr|\.svn)($|[/\\])'
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po]|\\)$|(^|[/\\])(\target|\.hg|\.git|\.bzr|\.svn)($|[/\\])'
 let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po])$|(^|[/\\])(\.hg|\.git|\.bzr|\.svn)($|[/\\])'
 let g:fuf_dir_exclude = '\v(^|[/\\])(\.hg|\.git|\.bzr|\.svn|build)($|[/\\])'
 let g:fuf_mrufile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po])$|^(\/\/|\\\\|\/mnt\/|\/media\/)'
@@ -174,13 +175,14 @@ let g:hier_enabled = 1
 vmap y y`]
 cmap w!! %!sudo tee > /dev/null %
 cmap wall 1,9000bwipeout
+cmap jp %!python -m json.tool
 nnoremap 'fb :FufBuffer<CR>
-nnoremap 'fc :FufMruCmd<CR>
-nnoremap 'fd :FufDir<CR>
+" nnoremap 'fc :FufMruCmd<CR>
+nnoremap 'fd :FufDir **/<CR>
 nnoremap 'fta :FufBufferTagAll<CR>
 nnoremap 'fe :FufFile **/<CR>
 nnoremap 'fh :FufHelp<CR>
-nnoremap 'fm :FufMruFile<CR>
+" nnoremap 'fm :FufMruFile<CR>
 nnoremap 'fq :FufQuickfix<CR>
 nnoremap 'ftt :FufBufferTag<CR>
 nnoremap 'frc :FufRenewCache<CR>
@@ -231,6 +233,13 @@ command! -nargs=1 Pygrep call Grep(<f-args>, 'py')
 command! -nargs=1 Plgrep call Grep(<f-args>, 'pl')
 command! -nargs=1 Rbgrep call Grep(<f-args>, 'rb')
 command! -nargs=1 Sgrep call Grep(<f-args>, 'scala')
+
+function! JPretty()
+    exe '%!python -m json.tool'
+    cw
+endfunction
+
+command! -nargs=0 Jpretty call JPretty()
 
 " Functions}}}
 
