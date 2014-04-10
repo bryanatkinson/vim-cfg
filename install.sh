@@ -21,6 +21,7 @@ git clone https://github.com/jcf/vim-latex ~/.vim/bundle/vim-latex
 git clone https://github.com/tclem/vim-arduino.git ~/.vim/bundle/vim-arduino
 git clone https://github.com/vim-scripts/DirDiff.vim.git ~/.vim/bundle/DirDiff
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
+git clone https://github.com/vim-scripts/pmd.vim.git ~/.vim/bundle/vim-pmd
 
 # add symlink to vimrc
 ln -s ~/.vim/vimrc ~/.vimrc
