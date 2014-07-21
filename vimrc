@@ -8,7 +8,7 @@ set go-=r
 set go-=L
 
 if has("gui_running")
-    set guifont=Droid\ Sans\ Mono\ 7
+    set guifont=Droid\ Sans\ Mono\ for\ Powerline\ 7
     set ruler
     set lsp=-1
 endif
@@ -33,7 +33,7 @@ set shiftwidth=4
 set tabstop=4
 set expandtab
 set laststatus=2
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+" set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 set wildmenu
 set wildmode=list:longest,full
@@ -130,14 +130,16 @@ autocmd FileType java set errorformat=[ERROR]\ %f:[%l\\,%v]\ %m
 let java_highlight_all=1
 
 " I like an 80 character max 
-autocmd FileType java match OverLength /\%91v.\+/
+" autocmd FileType java match OverLength /\%91v.\+/
 syn match javaError "<<<\|\.\.\|=>\|||=\|&&=\|[^-]->\|\*\/"
 
 " Java specific }}}
 
 " Scala stuff {{{
 au BufRead,BufNewFile *.scala set filetype=scala
-autocmd FileType scala match OverLength /\%120v.\+/
+au BufEnter *.scala setl formatprg=~/bin/scalariform.jar\ --stdin\ --stdout
+au BufEnter *.scala set shiftwidth=2
+" autocmd FileType scala match OverLength /\%120v.\+/
 " Scala stuff }}}
 
 " Arduino stuff {{{
@@ -162,12 +164,14 @@ let g:EasyMotion_leader_key = '<Leader>'
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem = 400
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po]|\\)$|(^|[/\\])(\target|\.hg|\.git|\.bzr|\.svn)($|[/\\])'
-let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po])$|(^|[/\\])(\.hg|\.git|\.bzr|\.svn)($|[/\\])'
-let g:fuf_dir_exclude = '\v(^|[/\\])(\.hg|\.git|\.bzr|\.svn|build)($|[/\\])'
-let g:fuf_mrufile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|pyc|sw[po])$|^(\/\/|\\\\|\/mnt\/|\/media\/)'
+let g:fuf_file_exclude = '\v\~$|\.(o|class|exe|dll|bak|orig|pyc|sw[po]|\\)$|(^|[/\\])(target|\.hg|\.git|\.bzr|\.svn)($|[/\\])'
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|class|exe|dll|bak|orig|pyc|sw[po])$|(^|[/\\])(target|\.hg|\.git|\.bzr|\.svn)($|[/\\])'
+let g:fuf_dir_exclude = '\v(^|[/\\])(target|\.hg|\.git|\.bzr|\.svn|build)($|[/\\])'
+let g:fuf_mrufile_exclude = '\v\~$|\.(o|class|exe|dll|bak|orig|pyc|sw[po])$|^(\/\/|\\\\|target|\/mnt\/|\/media\/)'
 
 let g:hier_enabled = 1
+let g:airline_detect_whitespace=0
+let g:airline_section_warning=""
 
 " Variables }}}
 
@@ -245,3 +249,10 @@ command! -nargs=0 Jpretty call JPretty()
 
 " Load local vim configuration
 source ~/.vimlocal
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
