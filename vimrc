@@ -72,6 +72,8 @@ augroup Binary
     au BufWritePost *.bin if &bin | %!xxd
     au BufWritePost *.bin set nomod | endif
 augroup END
+
+au BufEnter * set colorcolumn=
     
 " Generic Stuff }}}
 
@@ -131,11 +133,13 @@ let java_highlight_all=1
 
 " I like an 80 character max 
 " autocmd FileType java match OverLength /\%91v.\+/
+au BufEnter *.java set colorcolumn=91
 syn match javaError "<<<\|\.\.\|=>\|||=\|&&=\|[^-]->\|\*\/"
 
 " Java specific }}}
 
 " Scala stuff {{{
+au BufEnter *.scala set colorcolumn=101
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufEnter *.scala setl formatprg=~/bin/scalariform.jar\ --stdin\ --stdout
 au BufEnter *.scala set shiftwidth=2
@@ -217,6 +221,7 @@ if has("gui_running")
     hi NonText              gui=NONE guibg=grey6 guifg=LightSkyBlue
     hi Pmenu                gui=bold guibg=#305060 guifg=#b0d0e0
     hi OverLength           guibg=#445599        guifg=gray      gui=none
+    hi ColorColumn          guibg=grey6
 endif
 " }}}
 
