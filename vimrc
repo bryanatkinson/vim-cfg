@@ -134,6 +134,7 @@ let java_highlight_all=1
 " I like an 80 character max 
 " autocmd FileType java match OverLength /\%91v.\+/
 au BufEnter *.java set colorcolumn=91
+au BufEnter *.java set shiftwidth=4
 syn match javaError "<<<\|\.\.\|=>\|||=\|&&=\|[^-]->\|\*\/"
 
 " Java specific }}}
