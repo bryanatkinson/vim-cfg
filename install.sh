@@ -33,6 +33,9 @@ git clone https://github.com/vim-scripts/DirDiff.vim.git ~/.vim/bundle/DirDiff
 git clone https://github.com/Lokaltog/powerline.git ~/.vim/bundle/powerline
 git clone https://github.com/vim-scripts/pmd.vim.git ~/.vim/bundle/vim-pmd
 git clone https://github.com/chrisbra/csv.vim.git ~/.vim/bundle/csv
+git clone https://github.com/godlygeek/tabular.git ~/.vim/bundle/tabular
+git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+git clone https://github.com/Shougo/neocomplcache.vim.git ~/.vim/bundle/neocomplcach
 
 # add symlink to vimrc
 ln -s ~/.vim/vimrc ~/.vimrc

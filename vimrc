@@ -17,6 +17,7 @@ set relativenumber
 
 set nowrap
 set showmode
+set wrapscan
 
 set directory=.,~/tmp
 
@@ -27,12 +28,13 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-set nohidden
 set hidden
 set shiftwidth=4
 set tabstop=4
 set expandtab
 set laststatus=2
+set lazyredraw
+set scrolloff=8
 " set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
 set wildmenu
@@ -51,6 +53,7 @@ set wildignore=*.o,*.obj,*.class,*.exe,*.bin
 
 
 set undolevels=1000
+set cpoptions=ces$
 
 filetype on
 filetype indent on
@@ -58,7 +61,7 @@ filetype plugin on
 
 syntax on
 
-set tags=~/.tags
+set tags=tags;/
 
 set complete=.,w,b,u,t,i
 
@@ -144,6 +147,7 @@ au BufEnter *.scala set colorcolumn=101
 au BufRead,BufNewFile *.scala set filetype=scala
 au BufEnter *.scala setl formatprg=~/bin/scalariform.jar\ --stdin\ --stdout
 au BufEnter *.scala set shiftwidth=2
+" au BufWritePost *.scala silent! !ctags -R &
 " autocmd FileType scala match OverLength /\%120v.\+/
 " Scala stuff }}}
 
@@ -159,7 +163,6 @@ autocmd FileType arduino match OverLength /\%80v.\+/
 let g:xptemplate_vars = "SParg="
 
 " Java Imp Variables
-let g:JavaImpPaths = "~/workspace/3rd_party/java6/jdk/src/share/classes/,~/workspace/curplat/"
 let g:JavaImpDataDir = "~/.vim/JavaImp"
 
 " EasyMotion Variables
@@ -178,6 +181,18 @@ let g:hier_enabled = 1
 let g:airline_detect_whitespace=0
 let g:airline_section_warning=""
 
+let g:autotagExcludeSuffixes="tml.xml.text.txt.log.js.css.py"
+let g:autotagCtagsCmd="ctags"
+let g:autotagDisabled=1
+
+" neocomplcache {{{
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_disable_auto_complete = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+" neocomplcache }}}}
+
 " Variables }}}
 
 " Mappings {{{
@@ -193,7 +208,8 @@ nnoremap 'fe :FufFile **/<CR>
 nnoremap 'fh :FufHelp<CR>
 " nnoremap 'fm :FufMruFile<CR>
 nnoremap 'fq :FufQuickfix<CR>
-nnoremap 'ftt :FufBufferTag<CR>
+nnoremap 'ftt :FufTag<CR>
+nnoremap 'ftb :FufBufferTag<CR>
 nnoremap 'frc :FufRenewCache<CR>
 nnoremap 'd :NERDTreeFind<CR>
 nnoremap 'n :nohl<CR>
@@ -206,6 +222,9 @@ nnoremap 'u :GundoToggle<CR>
 nnoremap 'cn :cnext<CR>
 nnoremap 'cp :cprevious<CR>
 nnoremap 'cl :clist<CR>
+nnoremap 'ff :SortScalaImports<CR>msgggqG's
+nnoremap 'sc :SyntasticCheck<CR>
+nnoremap 'sr :SyntasticReset<CR>
 
 imap jj <Esc>
 imap <C-O> <C-o>O
@@ -221,8 +240,10 @@ if has("gui_running")
     colorscheme ego 
     hi NonText              gui=NONE guibg=grey6 guifg=LightSkyBlue
     hi Pmenu                gui=bold guibg=#305060 guifg=#b0d0e0
+    hi Search               guibg=#305060 guifg=#b0d0e0
     hi OverLength           guibg=#445599        guifg=gray      gui=none
     hi ColorColumn          guibg=grey6
+    hi SignColumn           guibg=grey6
 endif
 " }}}
 
