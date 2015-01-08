@@ -1,6 +1,42 @@
-" Generic stuff {{{
-execute pathogen#infect()
+" Vundle {{{
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
+"Let Vundle manage itself
+Plugin 'gmarik/Vundle.vim'
+
+"Plugins
+Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'corntrace/bufexplorer'
+Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'vim-scripts/L9'
+Plugin 'vim-scripts/xptemplate'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'vim-scripts/AutoTag'
+Plugin 'vlaadbrain/gnuplot.vim'
+Plugin 'jcf/vim-latex'
+Plugin 'tclem/vim-arduino'
+Plugin 'vim-scripts/DirDiff.vim'
+Plugin 'Lokaltog/powerline'
+Plugin 'vim-scripts/pmd.vim'
+Plugin 'chrisbra/csv.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/neocomplcache.vim'
+Plugin 'vim-scripts/TwitVim'
+
+call vundle#end()
+filetype plugin indent on
+" Vundle }}}
+
+" Generic stuff {{{
 syn on
 set go-=m
 set go-=T
@@ -45,7 +81,6 @@ if has("autocmd")
 	filetype plugin indent on
 endif
 
-set nocompatible
 
 set smarttab
 set backspace=indent,eol,start
@@ -274,12 +309,10 @@ command! -nargs=0 Jpretty call JPretty()
 
 " Functions}}}
 
+" Powerline {{{
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" Powerline }}}
+
 " Load local vim configuration
 source ~/.vimlocal
-
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
